@@ -9,7 +9,7 @@ class Routes {
   static Map<String, WidgetBuilder> getRoutes() {
     return {
       splash: (context) => const SplashScreen(),
-      home: (context) => const HomeScreen(),
+      home: (context) => HomeScreen(),
     };
   }
 }
