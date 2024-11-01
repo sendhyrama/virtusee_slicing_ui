@@ -1,9 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:virtusee_slicing_ui/utils/colors.dart';
 import 'package:virtusee_slicing_ui/utils/text_styles.dart';
+import 'custom_dialog.dart';
 
 class ScheduleWidget extends StatelessWidget {
   const ScheduleWidget({super.key});
+
+  void _showStartDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return CustomDialog(
+          iconData: Icons.info_outline,
+          title: 'Presensi Dimulai',
+          description:
+              'Siapkan sidik jari Anda untuk mengisi presensi otomatis. Pastikan layanan GPS pada perangkat Anda aktif untuk merekam lokasi presensi. Waktu presensi Anda akan dicatat secara otomatis dengan jam, menit, dan detik saat ini.',
+          primaryButtonText: 'Lanjutkan',
+          secondaryButtonText: 'Batal',
+          onPrimaryButtonPressed: () {
+            Navigator.of(context).pop();
+          },
+          onSecondaryButtonPressed: () {
+            Navigator.of(context).pop();
+          },
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +56,7 @@ class ScheduleWidget extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () => _showStartDialog(context),
               style: ElevatedButton.styleFrom(
                 backgroundColor: PrimaryColor.c5,
                 foregroundColor: Colors.white,
