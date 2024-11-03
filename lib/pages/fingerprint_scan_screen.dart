@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:virtusee_slicing_ui/pages/camera_screen.dart';
 import 'package:virtusee_slicing_ui/widgets/custom_dialog.dart';
 import 'package:virtusee_slicing_ui/utils/colors.dart';
 import 'package:virtusee_slicing_ui/utils/text_styles.dart';
@@ -214,7 +215,10 @@ class _FingerprintScanScreenState extends State<FingerprintScanScreen> {
         title: 'Pindai Sidik Jari Berhasil',
         primaryButtonText: 'Lanjutkan',
         onPrimaryButtonPressed: () {
-          Navigator.of(context).pop();
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const CameraScreen()),
+          );
         },
       ),
     );
