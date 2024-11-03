@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:virtusee_slicing_ui/pages/home_screen.dart';
 import 'package:virtusee_slicing_ui/utils/colors.dart';
 import '../utils/text_styles.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_dialog.dart';
+import 'home_screen_2.dart';
 
 class AttendanceDetailsScreen extends StatelessWidget {
   const AttendanceDetailsScreen({super.key});
@@ -20,7 +20,7 @@ class AttendanceDetailsScreen extends StatelessWidget {
           onPrimaryButtonPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const HomeScreen()),
+              MaterialPageRoute(builder: (context) => const HomeScreen2()),
             );
           },
         );
