@@ -26,8 +26,7 @@ class GreetingWidget extends StatelessWidget {
           const Spacer(),
           const CircleAvatar(
             radius: 40,
-            backgroundImage: NetworkImage(
-                'https://storage.googleapis.com/bucket-sendhyrama/sendhy-runn.jpg'),
+            backgroundImage: AssetImage('assets/images/avatar.png'),
           ),
         ],
       ),
