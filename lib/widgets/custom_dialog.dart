@@ -4,8 +4,9 @@ import 'package:virtusee_slicing_ui/utils/text_styles.dart';
 
 class CustomDialog extends StatelessWidget {
   final String title;
-  final String description;
+  final String? description;
   final IconData? iconData;
+  final Color? iconColor;
   final String? primaryButtonText;
   final String? secondaryButtonText;
   final VoidCallback? onPrimaryButtonPressed;
@@ -14,8 +15,9 @@ class CustomDialog extends StatelessWidget {
   const CustomDialog({
     super.key,
     required this.title,
-    required this.description,
+    this.description,
     this.iconData,
+    this.iconColor,
     this.primaryButtonText,
     this.secondaryButtonText,
     this.onPrimaryButtonPressed,
@@ -36,18 +38,24 @@ class CustomDialog extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 12.0),
                 child: Icon(
                   iconData,
-                  color: PrimaryColor.c5,
+                  color: iconColor ?? PrimaryColor.c5,
                   size: 50,
                 ),
               ),
             Text(title, style: TextStyles.b1),
             const SizedBox(height: 12),
-            Text(
-              description,
-              style: TextStyles.b4.copyWith(color: Colors.grey[600]),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 24),
+            if (description != null)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 24.0),
+                child: Text(
+                  description!,
+                  style: TextStyles.b4.copyWith(color: Colors.grey[600]),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            if (description == null)
+              const SizedBox(
+                  height: 8),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -75,6 +83,7 @@ class CustomDialog extends StatelessWidget {
                       onPressed: onPrimaryButtonPressed,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: PrimaryColor.c5,
+                        foregroundColor: Colors.white,
                         padding: const EdgeInsets.symmetric(vertical: 12),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
