@@ -8,6 +8,7 @@ import 'package:virtusee_slicing_ui/widgets/custom_outline_button.dart';
 import 'package:virtusee_slicing_ui/widgets/detail_toko_sogol.dart';
 import 'package:virtusee_slicing_ui/widgets/header_toko_sogol.dart';
 import 'package:virtusee_slicing_ui/widgets/keterangan_toko_sogol.dart';
+import '../routes.dart';
 import '../widgets/bottom_navbar.dart';
 import '../widgets/greeting.dart';
 import '../widgets/schedule.dart';
@@ -29,6 +30,7 @@ class DetailTokoScreen extends StatefulWidget {
 class _DetailTokoScreen extends State<DetailTokoScreen> {
 
   bool locationActive = false;
+  bool checkIn = false;
 
   @override
   Widget build(BuildContext context) {
@@ -54,19 +56,24 @@ class _DetailTokoScreen extends State<DetailTokoScreen> {
                 Padding(padding: EdgeInsets.all(20), child: DetailTokoSogol(data: widget.data, status: widget.status)),
                 Padding(padding: EdgeInsets.symmetric(horizontal: 20), child: KeteranganTokoSogol()),
                 AgendaTokoSogol(),
-                if(locationActive)
+                if(checkIn)
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20),
                     child: CustomOutlineButton(text: "Isi Formulir", onPressed: (){
-                      if(locationActive) _showCheckInSuccessDialog();
-                      else _showActivateLocationDialog();
+                      Navigator.of(context).pushNamed(
+                          Routes.formList, arguments: {'name': widget.data["name"], 'done': false }
+                      );
                     }),
                   )
                 else Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: CustomButton(text: "Check In", onPressed: (){
-                    if(locationActive) _showCheckInSuccessDialog();
-                    else _showActivateLocationDialog();
+                    if(locationActive) {
+                      _showCheckInSuccessDialog();
+                      setState(() {
+                        checkIn = true;
+                      });
+                    } else _showActivateLocationDialog();
                   }),
                 ),
                 Padding(

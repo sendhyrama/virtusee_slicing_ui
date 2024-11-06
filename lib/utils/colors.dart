@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class PrimaryColor {
   static const Color c1 = Color(0xFFDBF0FF);
-  static const Color c2 = Color(0xFFBAE6FD);
+  static const Color c2 = Color(0xFFDBEFFA);
   static const Color c3 = Color(0xFF7DD3FC);
   static const Color c4 = Color(0xFF38BDF8);
   static const Color c5 = Color(0xFF0EA5E9);
