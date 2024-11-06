@@ -128,8 +128,7 @@ class _ScheduleWidget2State extends State<ScheduleWidget2> {
                 ),
               ],
             )
-          else
-            SizedBox(
+          else SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {},

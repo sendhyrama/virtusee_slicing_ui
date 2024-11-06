@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:virtusee_slicing_ui/utils/colors.dart';
 import 'package:virtusee_slicing_ui/utils/text_styles.dart';
 
+import '../routes.dart';
+
 class StoreListWidget extends StatelessWidget {
   StoreListWidget({super.key});
   final List<Map<String, String>> stores = [
@@ -99,8 +101,6 @@ class StoreListWidget extends StatelessWidget {
               ),
             ),
             trailing: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Container(
                   padding:
@@ -135,6 +135,9 @@ class StoreListWidget extends StatelessWidget {
                 ),
               ],
             ),
+            onTap:() {
+              Navigator.of(context).pushNamed(Routes.detailToko, arguments: {'data': store, 'status': false });
+            }
           ),
         );
       },

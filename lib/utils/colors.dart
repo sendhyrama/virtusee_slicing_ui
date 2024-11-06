@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class PrimaryColor {
-  static const Color c1 = Color(0xFFE0F2FE);
+  static const Color c1 = Color(0xFFDBF0FF);
   static const Color c2 = Color(0xFFBAE6FD);
   static const Color c3 = Color(0xFF7DD3FC);
   static const Color c4 = Color(0xFF38BDF8);
@@ -26,7 +26,7 @@ class SuccessColor {
   static const Color c3 = Color(0xFF8ECE91);
   static const Color c4 = Color(0xFF69BD6C);
   static const Color c5 = Color(0xFF43AD47);
-  static const Color c6 = Color(0xFF368A39);
+  static const Color c6 = Color(0xFF16A34A);
   static const Color c7 = Color(0xFF28682B);
   static const Color c8 = Color(0xFF1B451C);
   static const Color c9 = Color(0xFF0D230E);
@@ -50,7 +50,7 @@ class WarningColor {
   static const Color c3 = Color(0xFFFFF194);
   static const Color c4 = Color(0xFFFFEC70);
   static const Color c5 = Color(0xFFFFE74C);
-  static const Color c6 = Color(0xFFD3BF3D);
+  static const Color c6 = Color(0xFFFCCD06);
   static const Color c7 = Color(0xFFA7972E);
   static const Color c8 = Color(0xFF7B6E1E);
   static const Color c9 = Color(0xFF4F460F);
