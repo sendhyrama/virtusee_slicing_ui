@@ -66,7 +66,8 @@ class StoreListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.only(
+          left: 20, right: 20, bottom: 20),
       itemCount: stores.length,
       itemBuilder: (context, index) {
         final store = stores[index];
