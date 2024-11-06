@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:virtusee_slicing_ui/utils/text_styles.dart';
+import '../utils/status_bar.dart';
 import '../widgets/bottom_navbar.dart';
 import '../widgets/greeting.dart';
 import '../widgets/schedule.dart';
@@ -10,6 +11,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    StatusBar.setLightStatusBar();
+
     return Scaffold(
       body: SafeArea(
         child: Column(

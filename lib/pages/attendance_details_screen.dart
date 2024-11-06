@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:virtusee_slicing_ui/utils/colors.dart';
+import '../utils/status_bar.dart';
 import '../utils/text_styles.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_dialog.dart';
@@ -18,7 +19,7 @@ class AttendanceDetailsScreen extends StatelessWidget {
           iconData: Icons.check_circle_outline,
           primaryButtonText: 'Kembali ke Beranda',
           onPrimaryButtonPressed: () {
-            Navigator.push(
+            Navigator.pushReplacement(
               context,
               MaterialPageRoute(builder: (context) => const HomeScreen2()),
             );
@@ -30,6 +31,7 @@ class AttendanceDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    StatusBar.setTransparentStatusBar();
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -73,7 +75,9 @@ class AttendanceDetailsScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Informasi Absensi', style: TextStyles.b1.copyWith(fontWeight: FontWeight.w600)),
+                    Text('Informasi Absensi',
+                        style: TextStyles.b1
+                            .copyWith(fontWeight: FontWeight.w600)),
                     const Divider(),
                     _buildInfoRow('Tanggal', '25 Jan 2024'),
                     _buildInfoRow('Jam Masuk', '08:56:00'),

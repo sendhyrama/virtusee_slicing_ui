@@ -4,6 +4,8 @@ import 'package:virtusee_slicing_ui/widgets/custom_dialog.dart';
 import 'package:virtusee_slicing_ui/utils/colors.dart';
 import 'package:virtusee_slicing_ui/utils/text_styles.dart';
 
+import '../utils/status_bar.dart';
+
 class FingerprintScanScreen extends StatefulWidget {
   const FingerprintScanScreen({super.key});
 
@@ -19,6 +21,7 @@ class _FingerprintScanScreenState extends State<FingerprintScanScreen> {
 
   @override
   Widget build(BuildContext context) {
+    StatusBar.setLightStatusBar();
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(

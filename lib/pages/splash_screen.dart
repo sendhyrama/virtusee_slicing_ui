@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../utils/status_bar.dart';
 import '../widgets/logo_widget.dart';
 import '../widgets/footer_text.dart';
 import '../routes.dart';
@@ -48,6 +49,7 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   Widget build(BuildContext context) {
+    StatusBar.setLightStatusBar();
     return Scaffold(
       backgroundColor: Colors.white,
       body: FadeTransition(
