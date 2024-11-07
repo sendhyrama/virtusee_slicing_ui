@@ -6,8 +6,9 @@ import '../routes.dart';
 import '../utils/colors.dart';
 
 class ItemForm extends StatelessWidget {
-  const ItemForm({required this.done, required this.title, super.key});
+  const ItemForm({required this.data, required this.done, required this.title, super.key});
 
+  final Map<String, String> data;
   final bool done;
   final String title;
 
@@ -24,7 +25,7 @@ class ItemForm extends StatelessWidget {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
         ),
         onPressed: () => Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => FormCekStokScreen())
+          MaterialPageRoute(builder: (context) => FormCekStokScreen(data: data))
         ),
         child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

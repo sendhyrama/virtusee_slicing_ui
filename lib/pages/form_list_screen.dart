@@ -18,9 +18,9 @@ import '../widgets/store_list.dart';
 
 
 class FormListScreen extends StatefulWidget {
-  const FormListScreen({required this.name, required this.done, super.key});
+  const FormListScreen({required this.data, required this.done, super.key});
 
-  final String name;
+  final Map<String, String> data;
   final bool done;
 
   @override
@@ -38,7 +38,9 @@ class _FormListScreen extends State<FormListScreen> {
             backgroundColor: PrimaryColor.c5,
             leading: IconButton(
               icon: Icon(Icons.arrow_back, color: Colors.white),
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: () => widget.done
+                  ? Navigator.popAndPushNamed(context, Routes.detailToko, arguments: {"data": widget.data, "status": true, "checkOut": true})
+                  : Navigator.of(context).pop()
             ),
             title: Text(
                 'Isi Formulir',
@@ -49,21 +51,21 @@ class _FormListScreen extends State<FormListScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                InfoCheckin(name: "${widget.name}"),
+                InfoCheckin(name: "${widget.data["name"]}"),
 
-                ItemForm(title: "Formulir Pengecekan Stok", done: widget.done),
+                ItemForm(title: "Formulir Pengecekan Stok", done: widget.done, data: widget.data),
                 Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20),
                     child: Divider(height: 1, color: Color(0xFFCDCDCD))
                 ),
 
-                ItemForm(title: "Formulir Tindak Lanjut Pesanan", done: widget.done),
+                ItemForm(title: "Formulir Tindak Lanjut Pesanan", done: widget.done, data: widget.data,),
                 Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20),
                     child: Divider(height: 1, color: Color(0xFFCDCDCD))
                 ),
 
-                ItemForm(title: "Formulir Penawaran Produk Baru", done: widget.done),
+                ItemForm(title: "Formulir Penawaran Produk Baru", done: widget.done, data: widget.data,),
                 Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20),
                     child: Divider(height: 1, color: Color(0xFFCDCDCD))

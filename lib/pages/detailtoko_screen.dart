@@ -13,13 +13,15 @@ import '../widgets/bottom_navbar.dart';
 import '../widgets/greeting.dart';
 import '../widgets/schedule.dart';
 import '../widgets/store_list.dart';
+import 'home_screen_2.dart';
 
 
 class DetailTokoScreen extends StatefulWidget {
-  const DetailTokoScreen({required this.data, required this.status, super.key});
+  const DetailTokoScreen({required this.data, required this.status, required this.checkOut, super.key});
 
   final Map<String, String> data;
   final bool status;
+  final bool checkOut;
 
   @override
   _DetailTokoScreen createState() => _DetailTokoScreen();
@@ -56,12 +58,12 @@ class _DetailTokoScreen extends State<DetailTokoScreen> {
                 Padding(padding: EdgeInsets.all(20), child: DetailTokoSogol(data: widget.data, status: widget.status)),
                 Padding(padding: EdgeInsets.symmetric(horizontal: 20), child: KeteranganTokoSogol()),
                 AgendaTokoSogol(),
-                if(checkIn)
+                if(checkIn || widget.status)
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20),
                     child: CustomOutlineButton(text: "Isi Formulir", onPressed: (){
                       Navigator.of(context).pushNamed(
-                          Routes.formList, arguments: {'name': widget.data["name"], 'done': false }
+                          Routes.formList, arguments: {'data': widget.data, 'done': false }
                       );
                     }),
                   )
@@ -78,13 +80,35 @@ class _DetailTokoScreen extends State<DetailTokoScreen> {
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: CustomButton(text: "Check Out", onPressed: null)
+                  child: CustomButton(
+                      text: "Check Out",
+                      onPressed: widget.checkOut ? (){
+                        _showCheckOutSuccessDialog();
+                      } : null
+                  )
                 ),
               ],
             ),
           ),
       ),
       debugShowCheckedModeBanner: false,
+    );
+  }
+
+  void _showCheckOutSuccessDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return CustomDialog(
+          title: 'Check Out Berhasil',
+          iconData: Icons.check_circle_outline_rounded,
+          iconColor: SuccessColor.c6,
+          primaryButtonText: 'Oke',
+          onPrimaryButtonPressed: () {
+            Navigator.of(context).pushNamedAndRemoveUntil(Routes.home, (Route<dynamic> route) => false, arguments: widget.data["name"]);
+          },
+        );
+      },
     );
   }
 

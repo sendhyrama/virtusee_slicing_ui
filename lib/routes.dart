@@ -15,16 +15,19 @@ class Routes {
   static Map<String, WidgetBuilder> getRoutes() {
     return {
       splash: (context) => const SplashScreen(),
-      home: (context) => HomeScreen(),
+      home: (context) => HomeScreen(name: ModalRoute.of(context)?.settings.arguments as String?),
       detailToko: (context) => DetailTokoScreen(
         data: (ModalRoute.of(context)?.settings.arguments as Map)['data'],
         status: (ModalRoute.of(context)?.settings.arguments as Map)['status'],
+        checkOut: (ModalRoute.of(context)?.settings.arguments as Map)['checkOut'],
       ),
       formList: (context) => FormListScreen(
-        name: (ModalRoute.of(context)?.settings.arguments as Map)['name'],
+        data: (ModalRoute.of(context)?.settings.arguments as Map)['data'],
         done: (ModalRoute.of(context)?.settings.arguments as Map)['done'],
       ),
-      formCekStok: (context) => FormCekStokScreen(),
+      formCekStok: (context) => FormCekStokScreen(
+        data: ModalRoute.of(context)?.settings.arguments as Map<String, String>,
+      ),
     };
   }
 }

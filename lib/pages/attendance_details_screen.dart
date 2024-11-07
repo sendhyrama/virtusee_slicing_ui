@@ -20,7 +20,7 @@ class AttendanceDetailsScreen extends StatelessWidget {
           onPrimaryButtonPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const HomeScreen2()),
+              MaterialPageRoute(builder: (context) => const HomeScreen2(name: null)),
             );
           },
         );
