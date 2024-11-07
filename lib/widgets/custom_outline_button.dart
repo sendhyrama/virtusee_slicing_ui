@@ -2,29 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:virtusee_slicing_ui/utils/colors.dart';
 import 'package:virtusee_slicing_ui/utils/text_styles.dart';
 
-class CustomButton extends StatelessWidget {
+class CustomOutlineButton extends StatelessWidget {
   final String text;
   final VoidCallback? onPressed;
   final Color color;
   final Color textColor;
 
-  const CustomButton({
+  const CustomOutlineButton({
     super.key,
     required this.text,
     required this.onPressed,
     this.color = PrimaryColor.c5,
-    this.textColor = Colors.white,
+    this.textColor = PrimaryColor.c5,
   });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      child: ElevatedButton(
+      child: OutlinedButton(
         onPressed: onPressed == null ? null : onPressed,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: onPressed == null ? Colors.grey[600] : color,
+        style: OutlinedButton.styleFrom(
           padding: const EdgeInsets.symmetric(vertical: 12),
+          foregroundColor: PrimaryColor.c5,
+          side: BorderSide(color: onPressed == null ? Color(0xFF4B5563) : color),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),

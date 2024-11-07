@@ -7,7 +7,9 @@ import '../widgets/greeting.dart';
 import '../widgets/store_list.dart';
 
 class HomeScreen2 extends StatelessWidget {
-  const HomeScreen2({super.key});
+  const HomeScreen2({super.key, required this.name});
+
+  final String? name;
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +65,7 @@ class HomeScreen2 extends StatelessWidget {
               child: Container(
                 width: double.infinity,
                 color: Colors.white54,
-                child: StoreListWidget(),
+                child: StoreListWidget(name: name),
               ),
             ),
           ],
