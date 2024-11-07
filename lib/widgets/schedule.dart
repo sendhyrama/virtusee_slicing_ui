@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_file.dart';
+import 'package:intl/intl.dart';
 import 'package:virtusee_slicing_ui/pages/fingerprint_scan_screen.dart';
 import 'package:virtusee_slicing_ui/utils/colors.dart';
 import 'package:virtusee_slicing_ui/utils/text_styles.dart';
@@ -35,6 +37,10 @@ class ScheduleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    DateTime now = DateTime.now();
+    String date = DateFormat('EEEE, dd MMMM yyyy', 'id_ID').format(now);
+
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(20.0),
@@ -52,7 +58,7 @@ class ScheduleWidget extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            "Kam, 1 Mar 2024",
+            date,
             style: TextStyles.b3.copyWith(color: PrimaryColor.c5),
           ),
           const SizedBox(height: 8),

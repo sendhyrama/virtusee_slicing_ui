@@ -2,8 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:virtusee_slicing_ui/utils/colors.dart';
 import 'package:virtusee_slicing_ui/utils/text_styles.dart';
 
-class StoreListWidget extends StatelessWidget {
-  StoreListWidget({super.key});
+import '../routes.dart';
+
+class StoreListWidget extends StatefulWidget {
+  const StoreListWidget({super.key, required this.name});
+
+  final String? name;
+
+  @override
+  _StoreListWidget createState() => _StoreListWidget();
+}
+
+class _StoreListWidget extends State<StoreListWidget> {
+
   final List<Map<String, String>> stores = [
     {
       "name": "Toko Sogol",
@@ -85,8 +96,7 @@ class StoreListWidget extends StatelessWidget {
             ],
           ),
           child: ListTile(
-            contentPadding:
-                const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             title: Text(
               store["name"]!,
               style: TextStyles.b3.copyWith(fontWeight: FontWeight.w600),
@@ -100,8 +110,6 @@ class StoreListWidget extends StatelessWidget {
               ),
             ),
             trailing: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Container(
                   padding:
@@ -123,11 +131,13 @@ class StoreListWidget extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                   decoration: BoxDecoration(
-                    color: Colors.orange,
+                    color: widget.name != null && widget.name != "" && widget.name == store["name"]
+                        ? SuccessColor.c5 : Colors.orange,
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Text(
-                    store["status"]!,
+                    widget.name != null && widget.name != ""  && widget.name == store["name"]
+                        ? "Sudah Dikunjungi" : store["status"]!,
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 10,
@@ -136,6 +146,9 @@ class StoreListWidget extends StatelessWidget {
                 ),
               ],
             ),
+            onTap:() async {
+              Navigator.of(context).pushNamed(Routes.detailToko, arguments: {'data': store, 'status': false, 'checkOut': false});
+            }
           ),
         );
       },
