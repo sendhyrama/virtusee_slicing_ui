@@ -59,6 +59,7 @@ flutter:
     - assets/images/avatar.png
     - assets/images/img_tokosogol.png
     - assets/fonts/
+    - assets/icons/
 
   fonts:
     - family: PlusJakartaSans
