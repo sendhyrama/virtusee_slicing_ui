@@ -5,9 +5,10 @@ import 'package:virtusee_slicing_ui/utils/text_styles.dart';
 import '../routes.dart';
 
 class StoreListWidget extends StatefulWidget {
-  const StoreListWidget({super.key, required this.name});
+  const StoreListWidget({super.key, required this.name, required this.isStarted});
 
   final String? name;
+  final ValueNotifier<bool> isStarted;
 
   @override
   _StoreListWidget createState() => _StoreListWidget();
@@ -76,81 +77,99 @@ class _StoreListWidget extends State<StoreListWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      padding: const EdgeInsets.all(20),
-      itemCount: stores.length,
-      itemBuilder: (context, index) {
-        final store = stores[index];
-        return Container(
-          margin: const EdgeInsets.only(bottom: 12),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(12),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.05),
-                blurRadius: 4,
-                offset: const Offset(0, 2),
-              ),
-            ],
-          ),
-          child: ListTile(
-            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            title: Text(
-              store["name"]!,
-              style: TextStyles.b3.copyWith(fontWeight: FontWeight.w600),
-            ),
-            subtitle: Text(
-              "${store["address"]!}\n${store["hours"]!}",
-              style: TextStyle(
-                fontSize: 12,
-                color: Colors.grey[600],
-                height: 1.5,
-              ),
-            ),
-            trailing: Column(
-              children: [
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                  decoration: BoxDecoration(
-                    color: Colors.blue[50],
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Text(
-                    store["distance"]!,
-                    style: const TextStyle(
-                      color: PrimaryColor.c5,
-                      fontSize: 12,
+    return ValueListenableBuilder<bool>(
+        valueListenable: widget.isStarted,
+        builder: (context, triggered, child) {
+          return ListView.builder(
+            padding: const EdgeInsets.all(20),
+            itemCount: stores.length,
+            itemBuilder: (context, index) {
+              final store = stores[index];
+
+              return Container(
+                margin: const EdgeInsets.only(bottom: 12),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.05),
+                      blurRadius: 4,
+                      offset: const Offset(0, 2),
                     ),
-                  ),
+                  ],
                 ),
-                const SizedBox(height: 4),
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                  decoration: BoxDecoration(
-                    color: widget.name != null && widget.name != "" && widget.name == store["name"]
-                        ? SuccessColor.c5 : Colors.orange,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Text(
-                    widget.name != null && widget.name != ""  && widget.name == store["name"]
-                        ? "Sudah Dikunjungi" : store["status"]!,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 10,
+                child: ListTile(
+                    contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 16, vertical: 8),
+                    title: Text(
+                      store["name"]!,
+                      style: TextStyles.b3.copyWith(
+                          fontWeight: FontWeight.w600),
                     ),
-                  ),
+                    subtitle: Text(
+                      "${store["address"]!}\n${store["hours"]!}",
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.grey[600],
+                        height: 1.5,
+                      ),
+                    ),
+                    trailing: Column(
+                      children: [
+                        Container(
+                          padding:
+                          const EdgeInsets.symmetric(
+                              horizontal: 8, vertical: 2),
+                          decoration: BoxDecoration(
+                            color: Colors.blue[50],
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Text(
+                            store["distance"]!,
+                            style: const TextStyle(
+                              color: PrimaryColor.c5,
+                              fontSize: 12,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        Container(
+                          padding:
+                          const EdgeInsets.symmetric(
+                              horizontal: 8, vertical: 2),
+                          decoration: BoxDecoration(
+                            color: widget.name != null && widget.name != "" &&
+                                widget.name == store["name"]
+                                ? SuccessColor.c5 : Colors.orange,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Text(
+                            widget.name != null && widget.name != "" && widget
+                                .name == store["name"]
+                                ? "Sudah Dikunjungi" : store["status"]!,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 10,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    onTap: triggered ? () async {
+                      Navigator.of(context).pushNamed(
+                          Routes.detailToko, arguments: {
+                        'data': store,
+                        'status': widget.name != null && widget.name != "" &&
+                            widget.name == store["name"]
+                            ? true : false,
+                        'checkOut': false});
+                    } : null
                 ),
-              ],
-            ),
-            onTap:() async {
-              Navigator.of(context).pushNamed(Routes.detailToko, arguments: {'data': store, 'status': false, 'checkOut': false});
-            }
-          ),
-        );
-      },
+              );
+            },
+          );
+        }
     );
   }
 }

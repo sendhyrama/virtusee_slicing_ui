@@ -7,12 +7,14 @@ import '../widgets/greeting.dart';
 import '../widgets/store_list.dart';
 
 class HomeScreen2 extends StatelessWidget {
-  const HomeScreen2({super.key, required this.name});
+  HomeScreen2({super.key, required this.name, required this.isStarted});
 
   final String? name;
+  final ValueNotifier<bool> isStarted;
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
@@ -31,9 +33,9 @@ class HomeScreen2 extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const GreetingWidget(),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.0),
-                child: ScheduleWidget2(),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: ScheduleWidget2(isStarted: isStarted),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 20.0, top: 20.0, bottom: 10.0),
@@ -51,7 +53,7 @@ class HomeScreen2 extends StatelessWidget {
                   ],
                 ),
               ),
-              Expanded(child: StoreListWidget(name: name)),
+              Expanded(child: StoreListWidget(name: name, isStarted: isStarted)),
             ],
           ),
         ),

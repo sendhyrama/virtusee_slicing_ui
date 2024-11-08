@@ -51,43 +51,43 @@ class _DetailTokoScreen extends State<DetailTokoScreen> {
             ),
           ),
           body: SafeArea(
+            child: SingleChildScrollView(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                HeaderTokoSogol(data: widget.data),
-                Padding(padding: EdgeInsets.all(20), child: DetailTokoSogol(data: widget.data, status: widget.status)),
-                Padding(padding: EdgeInsets.symmetric(horizontal: 20), child: KeteranganTokoSogol()),
-                AgendaTokoSogol(),
-                if(checkIn || widget.status)
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  HeaderTokoSogol(data: widget.data),
+                  Padding(padding: EdgeInsets.all(20), child: DetailTokoSogol(data: widget.data, status: widget.status)),
+                  const Padding(padding: EdgeInsets.symmetric(horizontal: 20), child: KeteranganTokoSogol()),
+                  const AgendaTokoSogol(),
+                  if(checkIn || widget.status) Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 4),
                     child: CustomOutlineButton(text: "Isi Formulir", onPressed: (){
                       Navigator.of(context).pushNamed(
                           Routes.formList, arguments: {'data': widget.data, 'done': false }
                       );
                     }),
-                  )
-                else Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: CustomButton(text: "Check In", onPressed: (){
-                    if(locationActive) {
-                      _showCheckInSuccessDialog();
-                      setState(() {
-                        checkIn = true;
-                      });
-                    } else _showActivateLocationDialog();
-                  }),
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: CustomButton(
-                      text: "Check Out",
-                      onPressed: widget.checkOut ? (){
-                        _showCheckOutSuccessDialog();
-                      } : null
-                  )
-                ),
-              ],
+                  ) else Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 4),
+                    child: CustomButton(text: "Check In", onPressed: (){
+                      if(locationActive) {
+                        _showCheckInSuccessDialog();
+                        setState(() {
+                          checkIn = true;
+                        });
+                      } else _showActivateLocationDialog();
+                    }),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    child: CustomButton(
+                        text: "Check Out",
+                        onPressed: widget.checkOut ? (){
+                          _showCheckOutSuccessDialog();
+                        } : null
+                    )
+                  ),
+                ],
+              ),
             ),
           ),
       ),

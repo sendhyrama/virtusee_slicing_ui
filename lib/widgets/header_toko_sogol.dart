@@ -1,4 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:maps_launcher/maps_launcher.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:virtusee_slicing_ui/pages/callwhatsapp_screen.dart';
 import 'package:virtusee_slicing_ui/utils/text_styles.dart';
 
 import '../utils/colors.dart';
@@ -44,20 +49,22 @@ class HeaderTokoSogol extends StatelessWidget {
                         ),
                       ),
 
-                      Row(
-                        children: [
-                          Icon(Icons.location_on_outlined, color: Colors.white),
-                          SizedBox(width: 10),
-                          Expanded(
-                            flex: 3,
-                            child: Text(
-                              "${data["address"]}",
-                              softWrap: true,
-                              style:
-                                  TextStyles.b4.copyWith(color: Colors.white),
+                      GestureDetector(
+                        onTap: () => MapsLauncher.launchCoordinates(-7.292849925298976,112.71184551486886),
+                        child: Row(
+                          children: [
+                            Icon(Icons.location_on_outlined, color: Colors.white),
+                            SizedBox(width: 10),
+                            Expanded(
+                              flex: 3,
+                              child: Text(
+                                "${data["address"]}",
+                                softWrap: true,
+                                style: TextStyles.b4.copyWith(color: Colors.white),
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
 
                       Padding(
@@ -92,7 +99,12 @@ class HeaderTokoSogol extends StatelessWidget {
                     ),
                     iconSize: 30,
                     icon: Icon(Icons.call, color: Colors.white),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => CallWhatsappScreen(name: "${data["name"]}",)),
+                      );
+                    },
                   ),
                 ),
               ],
@@ -102,4 +114,16 @@ class HeaderTokoSogol extends StatelessWidget {
       ],
     );
   }
+
+  // static Future<void> openMap() async {
+  //   String googleUrl = 'https://www.google.com/maps/search/?api=1&query=-7.292849925298976,112.71184551486886';
+  //   Uri uri = Uri.parse(googleUrl);
+  //
+  //   if (await canLaunchUrl(uri)) {
+  //     launchUrl(uri, mode: LaunchMode.externalApplication);
+  //   } else {
+  //     throw 'Could not open the map.';
+  //   }
+  // }
+
 }

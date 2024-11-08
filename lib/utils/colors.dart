@@ -37,7 +37,7 @@ class DangerColor {
   static const Color c2 = Color(0xFFF2B2B4);
   static const Color c3 = Color(0xFFEB8B8F);
   static const Color c4 = Color(0xFFE56569);
-  static const Color c5 = Color(0xFFDE3E44);
+  static const Color c5 = Color(0xFFFF2222);
   static const Color c6 = Color(0xFFB23236);
   static const Color c7 = Color(0xFF852529);
   static const Color c8 = Color(0xFF59191B);

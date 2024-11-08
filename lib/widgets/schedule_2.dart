@@ -4,7 +4,9 @@ import '../utils/text_styles.dart';
 import 'custom_dialog.dart';
 
 class ScheduleWidget2 extends StatefulWidget {
-  const ScheduleWidget2({super.key});
+  const ScheduleWidget2({super.key, required this.isStarted});
+
+  final ValueNotifier<bool> isStarted;
 
   @override
   _ScheduleWidget2State createState() => _ScheduleWidget2State();
@@ -95,6 +97,7 @@ class _ScheduleWidget2State extends State<ScheduleWidget2> {
                     onPressed: () {
                       setState(() {
                         isPaused = !isPaused;
+                        widget.isStarted.value = isPaused; /// TODO : TEST
                       });
                     },
                     style: OutlinedButton.styleFrom(

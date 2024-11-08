@@ -16,10 +16,10 @@ class KeteranganTokoSogol extends StatelessWidget {
           style: TextStyles.b4.copyWith(fontWeight: FontWeight.bold),
           textAlign: TextAlign.start,
         ),
-        const SizedBox(height: 6),
+        const SizedBox(height: 4),
         Text(
           "Prioritas tinggi artinya toko tersebut memiliki potensi penjualan tinggi, stok kritis, masalah urgen, promosi khusus, atau hubungan strategis.",
-          style: TextStyles.b4.copyWith(fontWeight: FontWeight.normal, height: 2),
+          style: TextStyles.b4.copyWith(fontWeight: FontWeight.normal, height: 1.75),
         ),
       ],
     );
