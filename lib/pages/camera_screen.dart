@@ -3,6 +3,8 @@ import 'package:virtusee_slicing_ui/pages/attendance_details_screen.dart';
 import 'package:virtusee_slicing_ui/utils/colors.dart';
 import 'package:virtusee_slicing_ui/utils/text_styles.dart';
 
+import '../utils/status_bar.dart';
+
 class CameraScreen extends StatelessWidget {
   const CameraScreen({super.key});
 
@@ -15,6 +17,7 @@ class CameraScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    StatusBar.setTransparentStatusBar();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: PrimaryColor.c5,

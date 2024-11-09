@@ -12,12 +12,11 @@ class ScheduleWidget2 extends StatefulWidget {
   _ScheduleWidget2State createState() => _ScheduleWidget2State();
 }
 
-// void _startAttendance(BuildContext context) {}
-
 class _ScheduleWidget2State extends State<ScheduleWidget2> {
   bool isAttendanceStarted = true;
   bool isPaused = false;
   bool isStopped = false;
+  String displayTime = "00 : 09 : 35"; // Initial time display
 
   void _showConfirmationDialog() {
     showDialog(
@@ -35,6 +34,7 @@ class _ScheduleWidget2State extends State<ScheduleWidget2> {
               isAttendanceStarted = false;
               isPaused = false;
               isStopped = true;
+              displayTime = "09.00 - 17.00"; // Update time to new value
             });
             Navigator.of(context).pop();
           },
@@ -69,7 +69,7 @@ class _ScheduleWidget2State extends State<ScheduleWidget2> {
             style: TextStyles.b3.copyWith(color: PrimaryColor.c5),
           ),
           const SizedBox(height: 8),
-          const Text("00 : 09 : 35", style: TextStyles.t1),
+          Text(displayTime, style: TextStyles.t1), // Display updated time
           const SizedBox(height: 16),
           if (isStopped)
             SizedBox(

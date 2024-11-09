@@ -82,20 +82,50 @@ class _StoreListWidget extends State<StoreListWidget> {
         builder: (context, triggered, child) {
           return ListView.builder(
             padding: const EdgeInsets.all(20),
-            itemCount: stores.length,
-            itemBuilder: (context, index) {
-              final store = stores[index];
-
-              return Container(
-                margin: const EdgeInsets.only(bottom: 12),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.05),
-                      blurRadius: 4,
-                      offset: const Offset(0, 2),
+      itemCount: stores.length,
+      itemBuilder: (context, index) {
+        final store = stores[index];
+        return Container(
+          margin: const EdgeInsets.only(bottom: 12),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(12),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.05),
+                blurRadius: 4,
+                offset: const Offset(0, 2),
+              ),
+            ],
+          ),
+          child: ListTile(
+            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            title: Text(
+              store["name"]!,
+              style: TextStyles.b3.copyWith(fontWeight: FontWeight.w600),
+            ),
+            subtitle: Text(
+              "${store["address"]!}\n${store["hours"]!}",
+              style: TextStyle(
+                fontSize: 12,
+                color: Colors.grey[600],
+                height: 1.5,
+              ),
+            ),
+            trailing: Column(
+              children: [
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                  decoration: BoxDecoration(
+                    color: Colors.blue[50],
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Text(
+                    store["distance"]!,
+                    style: const TextStyle(
+                      color: PrimaryColor.c5,
+                      fontSize: 12,
                     ),
                   ],
                 ),
