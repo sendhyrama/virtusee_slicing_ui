@@ -7,9 +7,10 @@ import '../widgets/greeting.dart';
 import '../widgets/store_list.dart';
 
 class HomeScreen2 extends StatelessWidget {
-  const HomeScreen2({super.key, required this.name});
+  HomeScreen2({super.key, required this.name, required this.isStarted});
 
   final String? name;
+  final ValueNotifier<bool> isStarted;
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +66,7 @@ class HomeScreen2 extends StatelessWidget {
               child: Container(
                 width: double.infinity,
                 color: Colors.white54,
-                child: StoreListWidget(name: name),
+                child: StoreListWidget(name: name, isStarted: isStarted),
               ),
             ),
           ],

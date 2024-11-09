@@ -7,7 +7,9 @@ import '../widgets/custom_dialog.dart';
 import 'home_screen_2.dart';
 
 class AttendanceDetailsScreen extends StatelessWidget {
-  const AttendanceDetailsScreen({super.key});
+  AttendanceDetailsScreen({super.key});
+
+  ValueNotifier<bool> isStarted = ValueNotifier(true);
 
   void _showSuccessDialog(BuildContext context) {
     showDialog(
@@ -21,7 +23,7 @@ class AttendanceDetailsScreen extends StatelessWidget {
           onPrimaryButtonPressed: () {
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => const HomeScreen2(name: null)),
+              MaterialPageRoute(builder: (context) => HomeScreen2(name: null, isStarted: isStarted,)),
             );
           },
         );

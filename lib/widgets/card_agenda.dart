@@ -28,7 +28,7 @@ class CardAgenda extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: 8),
         Padding(
           padding: const EdgeInsets.only(bottom: 24.0),
           child: Text(

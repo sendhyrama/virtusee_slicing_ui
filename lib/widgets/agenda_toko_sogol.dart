@@ -13,7 +13,7 @@ class AgendaTokoSogol extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: EdgeInsets.only(left: 20, top: 20, bottom: 10),
+          padding: EdgeInsets.only(left: 20, top: 10, bottom: 6),
           child: Text(
             "Agenda",
             style: TextStyles.b4.copyWith(fontWeight: FontWeight.bold),

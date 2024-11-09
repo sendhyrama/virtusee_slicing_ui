@@ -7,9 +7,10 @@ import '../widgets/schedule.dart';
 import '../widgets/store_list.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key, required this.name});
+  HomeScreen({super.key, required this.name});
 
   final String? name;
+  final ValueNotifier<bool> isStarted = ValueNotifier(false);
 
   @override
   Widget build(BuildContext context) {
@@ -61,12 +62,11 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
               ),
-            ),
             Expanded(
               child: Container(
                 width: double.infinity,
                 color: Colors.white54,
-                child: StoreListWidget(name: name),
+                child: StoreListWidget(name: name, isStarted: isStarted),
               ),
             ),
           ],

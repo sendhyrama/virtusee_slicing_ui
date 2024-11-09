@@ -11,7 +11,7 @@ class CameraScreen extends StatelessWidget {
   void _navigateToDetailsPage(BuildContext context) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const AttendanceDetailsScreen()),
+      MaterialPageRoute(builder: (context) => AttendanceDetailsScreen()),
     );
   }
 
